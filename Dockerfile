@@ -6,7 +6,8 @@ ENV GO111MODULE on
 RUN apk upgrade \
     && apk add git \
     && go get github.com/shadowsocks/go-shadowsocks2 \
-    && go get github.com/shadowsocks/v2ray-plugin
+    && go get github.com/shadowsocks/v2ray-plugin \
+    && go get github.com/ginuerzh/gost
 
 FROM alpine:3.12 AS dist
 
@@ -18,5 +19,7 @@ RUN apk upgrade \
 
 COPY --from=builder /go/bin/go-shadowsocks2 /usr/bin/shadowsocks
 COPY --from=builder /go/bin/v2ray-plugin /usr/bin/v2ray
+COPY --from=builder /go/bin/gost /usr/bin/gost
+
 
 ENTRYPOINT ["shadowsocks"]
