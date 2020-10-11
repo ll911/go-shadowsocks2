@@ -5,7 +5,7 @@ ENV GO111MODULE on
 
 RUN apk upgrade \
     && apk add git \
-    && go get gitlab.com/yawning/obfs4 \
+    && go get github.com/Yawning/obfs4 \
     && go get github.com/shadowsocks/go-shadowsocks2 \
     && go get github.com/shadowsocks/v2ray-plugin \
     && go get github.com/ginuerzh/gost
