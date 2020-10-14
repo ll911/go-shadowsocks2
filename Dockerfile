@@ -5,22 +5,20 @@ ENV GO111MODULE on
 
 RUN apk upgrade \
     && apk add git \
-    && go get gitlab.com/yawning/obfs4.git \
     && go get github.com/shadowsocks/go-shadowsocks2 \
-    && go get github.com/shadowsocks/v2ray-plugin \
-    && go get github.com/ginuerzh/gost
+    && go get github.com/shadowsocks/v2ray-plugin
 
 FROM alpine:3.12 AS dist
 
 #LABEL maintainer="mritd <mritd@linux.com>"
 
+ARG gbin="https://github.com/ginuerzh/gost/releases/download/v2.11.1/gost-linux-amd64-2.11.1.gz"
 RUN apk upgrade \
     && apk add tzdata \
+    && curl -L -J ${gbin} | tar --no-same-owner -C /usr/bin/ -xz gost \
     && rm -rf /var/cache/apk/*
 
 COPY --from=builder /go/bin/go-shadowsocks2 /usr/bin/shadowsocks
 COPY --from=builder /go/bin/v2ray-plugin /usr/bin/v2ray
-COPY --from=builder /go/bin/gost /usr/bin/gost
-
 
 ENTRYPOINT ["shadowsocks"]
