@@ -14,8 +14,9 @@ FROM alpine:3.12 AS dist
 
 ARG gbin="https://github.com/ginuerzh/gost/releases/download/v2.11.1/gost-linux-amd64-2.11.1.gz"
 RUN apk upgrade \
-    && apk add tzdata \
-    && curl -L -J ${gbin} | tar --no-same-owner -C /usr/bin/ -xz gost \
+    && apk add curl gzip tzdata \
+    && curl -L -J ${gbin} | gunzip -c > /usr/bin/gost \
+    && chmod 755 /usr/bin/gost \
     && rm -rf /var/cache/apk/*
 
 COPY --from=builder /go/bin/go-shadowsocks2 /usr/bin/shadowsocks
