@@ -1,4 +1,4 @@
-FROM golang:1.16.2-alpine3.13 AS builder
+FROM golang:1.16-alpine3.14 AS builder
 
 ENV GO111MODULE on
 #ENV GOPROXY https://goproxy.cn
@@ -13,7 +13,7 @@ FROM alpine:3.13 AS dist
 #LABEL maintainer="mritd <mritd@linux.com>"
 
 ARG gbin="https://github.com/ginuerzh/gost/releases/download/v2.11.1/gost-linux-amd64-2.11.1.gz"
-ARG rbin="https://github.com/shadowsocks/shadowsocks-rust/releases/download/v1.11.1/shadowsocks-v1.11.1.x86_64-unknown-linux-musl.tar.xz"
+ARG rbin="https://github.com/shadowsocks/shadowsocks-rust/releases/download/v1.11.2/shadowsocks-v1.11.2.x86_64-unknown-linux-musl.tar.xz"
 RUN apk upgrade \
     && apk --no-cache add curl tzdata \
     && apk --no-cache add --virtual devs gzip tar xz \
