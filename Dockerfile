@@ -15,8 +15,7 @@ FROM quay.io/llrealm/baseutil AS dist
 ARG gbin="https://github.com/ginuerzh/gost/releases/download/v2.11.1/gost-linux-amd64-2.11.1.gz"
 ARG rbin="https://github.com/shadowsocks/shadowsocks-rust/releases/download/v1.14.3/shadowsocks-v1.14.3.x86_64-unknown-linux-musl.tar.xz"
 ARG kbin="https://github.com/xtaci/kcptun/releases/download/v20210922/kcptun-linux-amd64-20210922.tar.gz"
-RUN apk upgrade \
-    && apk --no-cache add curl tzdata \
+RUN apk --no-cache add tzdata \
     && apk --no-cache add --virtual devs gzip tar xz \
     && curl -L -J ${gbin} | gunzip -c > /usr/bin/gost \
     && chmod 755 /usr/bin/gost \
