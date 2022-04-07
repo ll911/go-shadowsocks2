@@ -1,4 +1,4 @@
-FROM golang:1.18-alpine3.15 AS builder
+FROM golang:1.17-alpine3.15 AS builder
 
 ENV GO111MODULE on
 #ENV GOPROXY https://goproxy.cn
@@ -12,6 +12,7 @@ FROM quay.io/llrealm/baseutil AS dist
 
 #LABEL maintainer="mritd <mritd@linux.com>"
 
+USER 0
 ARG gbin="https://github.com/ginuerzh/gost/releases/download/v2.11.1/gost-linux-amd64-2.11.1.gz"
 ARG rbin="https://github.com/shadowsocks/shadowsocks-rust/releases/download/v1.14.3/shadowsocks-v1.14.3.x86_64-unknown-linux-musl.tar.xz"
 ARG kbin="https://github.com/xtaci/kcptun/releases/download/v20210922/kcptun-linux-amd64-20210922.tar.gz"
