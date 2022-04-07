@@ -1,4 +1,4 @@
-FROM golang:1.16-alpine3.14 AS builder
+FROM golang:1.18-alpine3.15 AS builder
 
 ENV GO111MODULE on
 #ENV GOPROXY https://goproxy.cn
@@ -8,12 +8,12 @@ RUN apk upgrade \
     && go get github.com/shadowsocks/go-shadowsocks2 \
     && go get github.com/shadowsocks/v2ray-plugin
 
-FROM alpine:3.13 AS dist
+FROM quay.io/llrealm/baseutil AS dist
 
 #LABEL maintainer="mritd <mritd@linux.com>"
 
 ARG gbin="https://github.com/ginuerzh/gost/releases/download/v2.11.1/gost-linux-amd64-2.11.1.gz"
-ARG rbin="https://github.com/shadowsocks/shadowsocks-rust/releases/download/v1.11.2/shadowsocks-v1.11.2.x86_64-unknown-linux-musl.tar.xz"
+ARG rbin="https://github.com/shadowsocks/shadowsocks-rust/releases/download/v1.14.3/shadowsocks-v1.14.3.x86_64-unknown-linux-musl.tar.xz"
 ARG kbin="https://github.com/xtaci/kcptun/releases/download/v20210922/kcptun-linux-amd64-20210922.tar.gz"
 RUN apk upgrade \
     && apk --no-cache add curl tzdata \
