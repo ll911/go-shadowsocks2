@@ -8,7 +8,7 @@ RUN apk update \
     && go get github.com/shadowsocks/go-shadowsocks2 \
     && go get github.com/shadowsocks/v2ray-plugin
 
-FROM quay.io/llrealm/baseutil:prod AS dist
+FROM quay.io/llrealm/baseutil:main AS dist
 
 #LABEL maintainer="mritd <mritd@linux.com>"
 
@@ -27,6 +27,7 @@ RUN apk update && apk --no-cache add tzdata \
     && ln -s /usr/bin/server_linux_amd64 /usr/bin/kts \
     && ln -s /usr/bin/client_linux_amd64 /usr/bin/ktc \
     && apk del --purge devs \
+    && apk del --purge curl git openssh-client wget \
     && rm -rf /var/cache/apk/* \
     && rm /tmp/ss.tar.xz /tmp/kbin.tar.gz
 
