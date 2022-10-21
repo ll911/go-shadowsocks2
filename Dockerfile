@@ -8,7 +8,7 @@ RUN apk update \
     && go get github.com/shadowsocks/go-shadowsocks2 \
     && go get github.com/shadowsocks/v2ray-plugin
 
-FROM quay.io/llrealm/baseutil AS dist
+FROM quay.io/llrealm/baseutil:prod AS dist
 
 #LABEL maintainer="mritd <mritd@linux.com>"
 
