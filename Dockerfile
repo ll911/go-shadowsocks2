@@ -6,7 +6,7 @@ ENV GO111MODULE on
 RUN apk update \
     && apk add git \
     && go get github.com/shadowsocks/go-shadowsocks2 \
-    && go get github.com/shadowsocks/v2ray-plugin
+    && go get github.com/shadowsocks/v2ray-plugin@v1.3.2
 
 FROM quay.io/llrealm/baseutil:main AS dist
 
