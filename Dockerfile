@@ -21,16 +21,15 @@ RUN apk update && apk --no-cache add tzdata \
     && apk --no-cache add --virtual devs gzip tar xz \
     && curl -L -J ${gbin} | gunzip -c > /usr/bin/gost \
     && chmod 755 /usr/bin/gost \
-    && cd /tmp && curl -s -L -J ${rbin} | tar -C /usr/local/ -xJ \
+    && cd /tmp && curl -s -L -J ${rbin} | tar -C /usr/bin/ -xJ \
     && curl -s -L -J ${kbin} | tar -C /usr/local/ -xz \
     && ln -s /usr/bin/server_linux_amd64 /usr/bin/kts \
     && ln -s /usr/bin/client_linux_amd64 /usr/bin/ktc \
-    && curl -L -J ${vbin} | tar -C /usr/local/ -xz \
+    && curl -L -J ${vbin} | tar -C /usr/bin/ -xz \
     && ln -s /usr/bin/v2ray-plugin_linux_amd64 /usr/bin/v2ray \
     && apk del --purge devs \
     && apk del --purge curl git openssh-client wget \
-    && rm -rf /var/cache/apk/* \
-    && rm /tmp/*
+    && rm -rf /var/cache/apk/* 
 
 COPY --from=builder /go/bin/go-shadowsocks2 /usr/bin/shadowsocks
 #COPY --from=builder /go/bin/v2ray-plugin /usr/bin/v2ray
