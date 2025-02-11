@@ -33,4 +33,4 @@ RUN apk update && apk --no-cache add tzdata \
 # COPY --from=builder /go/bin/go-shadowsocks2 /usr/bin/shadowsocks
 #COPY --from=builder /go/bin/v2ray-plugin /usr/bin/v2ray
 
-ENTRYPOINT ["bash"]
+ENTRYPOINT ["/bin/sh"]
