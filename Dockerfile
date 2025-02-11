@@ -17,7 +17,7 @@ ARG gbin="https://github.com/ginuerzh/gost/releases/download/v2.12.0/gost_2.12.0
 ARG rbin="https://github.com/shadowsocks/shadowsocks-rust/releases/download/v1.22.0/shadowsocks-v1.22.0.x86_64-unknown-linux-musl.tar.xz"
 ARG kbin="https://github.com/xtaci/kcptun/releases/download/v20210922/kcptun-linux-amd64-20210922.tar.gz"
 ARG vbin="https://github.com/shadowsocks/v2ray-plugin/releases/download/v1.3.2/v2ray-plugin-linux-amd64-v1.3.2.tar.gz"
-RUN apk update && apk --no-cache add tzdata \
+RUN apk update && apk --no-cache add coreutils tzdata \
     && apk --no-cache add --virtual devs gzip tar xz \
     && cd /tmp && curl -L -J ${gbin} | tar -C /usr/local/ -xz \
     && curl -s -L -J ${rbin} | tar -C /usr/bin/ -xJ \
