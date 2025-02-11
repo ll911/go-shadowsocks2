@@ -1,14 +1,14 @@
-FROM golang:1.17-alpine3.15 AS builder
+# FROM golang:1.17-alpine3.15 AS builder
 
-ENV GO111MODULE on
+# ENV GO111MODULE on
 #ENV GOPROXY https://goproxy.cn
 
-RUN apk update \
-    && apk add git \
-    && go get github.com/shadowsocks/go-shadowsocks2 \
-    && go get github.com/shadowsocks/v2ray-plugin@v1.3.2
+# RUN apk update \
+#     && apk add git \
+#     && go get github.com/shadowsocks/go-shadowsocks2 \
+#     && go get github.com/shadowsocks/v2ray-plugin@v1.3.2
 
-FROM quay.io/llrealm/baseutil:main AS dist
+# FROM quay.io/llrealm/baseutil:main AS dist
 
 #LABEL maintainer="mritd <mritd@linux.com>"
 
@@ -31,7 +31,7 @@ RUN apk update && apk --no-cache add tzdata \
     && apk del --purge curl git openssh-client wget \
     && rm -rf /var/cache/apk/* 
 
-COPY --from=builder /go/bin/go-shadowsocks2 /usr/bin/shadowsocks
+# COPY --from=builder /go/bin/go-shadowsocks2 /usr/bin/shadowsocks
 #COPY --from=builder /go/bin/v2ray-plugin /usr/bin/v2ray
 
-ENTRYPOINT ["shadowsocks"]
+ENTRYPOINT ["bash"]
