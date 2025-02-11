@@ -20,7 +20,7 @@ ARG vbin="https://github.com/shadowsocks/v2ray-plugin/releases/download/v1.3.2/v
 RUN apk update && apk --no-cache add tzdata \
     && apk --no-cache add --virtual devs gzip tar xz \
     && curl -L -J ${gbin} | tar -C /usr/local/ -xz \
-    && chmod 755 /usr/bin/gost \
+    && chmod 755 /usr/local/bin/* \
     && cd /tmp && curl -s -L -J ${rbin} | tar -C /usr/bin/ -xJ \
     && curl -s -L -J ${kbin} | tar -C /usr/local/ -xz \
     && ln -s /usr/bin/server_linux_amd64 /usr/bin/kts \
@@ -28,7 +28,7 @@ RUN apk update && apk --no-cache add tzdata \
     && curl -L -J ${vbin} | tar -C /usr/bin/ -xz \
     && ln -s /usr/bin/v2ray-plugin_linux_amd64 /usr/bin/v2ray \
     && apk del --purge devs \
-    && apk del --purge curl git openssh-client wget \
+    && apk del --purge openssh-client wget \
     && rm -rf /var/cache/apk/* 
 
 # COPY --from=builder /go/bin/go-shadowsocks2 /usr/bin/shadowsocks
