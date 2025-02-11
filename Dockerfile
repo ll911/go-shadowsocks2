@@ -33,4 +33,4 @@ RUN apk update && apk --no-cache add coreutils tzdata \
 # COPY --from=builder /go/bin/go-shadowsocks2 /usr/bin/shadowsocks
 #COPY --from=builder /go/bin/v2ray-plugin /usr/bin/v2ray
 
-ENTRYPOINT ["/bin/sh"]
+CMD ["/usr/bin/tail", "-f", "/dev/null"]
