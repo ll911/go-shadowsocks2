@@ -8,7 +8,7 @@
 #     && go get github.com/shadowsocks/go-shadowsocks2 \
 #     && go get github.com/shadowsocks/v2ray-plugin@v1.3.2
 
-# FROM quay.io/llrealm/baseutil:main AS dist
+FROM quay.io/llrealm/baseutil:main
 
 #LABEL maintainer="mritd <mritd@linux.com>"
 
